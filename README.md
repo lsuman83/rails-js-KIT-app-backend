@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Began building the backend with devise by using this "https://github.com/DakotaLMartinez/rails-devise-jwt-tutorial"
 
-Things you may want to cover:
+/*
+string :first_name
+string :last_name
+string :relationship
+date :birthday
+string: address
+string :avatar_url
+*/
 
-* Ruby version
+Person
+    belongs_to :user
+    has_many :notes
 
-* System dependencies
+/*
 
-* Configuration
+text :context
 
-* Database creation
+*/
 
-* Database initialization
+Note
+    belongs_to :user
+    belongs_to :person
 
-* How to run the test suite
+*/
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+``
+rails g scaffold Person first_name last_name relationship birthday:date address avatar_url
 
-* ...
+``
+
+``
+rails g scaffold Note context:text
+
+``
