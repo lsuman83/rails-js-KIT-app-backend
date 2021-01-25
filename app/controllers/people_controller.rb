@@ -3,9 +3,9 @@ class PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.all
+    @people = current_user.people
 
-    render json: @people
+    render json: PersonSerializer.new(@people).serializable_hash[:data].map{|hash| hash[:attributes]}
   end
 
   # GET /people/1
