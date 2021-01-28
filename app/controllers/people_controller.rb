@@ -10,15 +10,15 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   def show
-    render json: @person
+    render json: PersonSerializer.new(@person).serializable_hash[:data][:attributes]
   end
 
   # POST /people
   def create
-    @person = Person.new(person_params)
-
+    @person = current_user.people.build(person_params)
+    
     if @person.save
-      render json: @person, status: :created, location: @person
+      render json: PersonSerializer.new(@person).serializable_hash[:data][:attributes], status: :created, location: @person
     else
       render json: @person.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class PeopleController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def person_params
-      params.require(:person).permit(:first_name, :Last_name, :relationship, :birthday, :address, :avatar_url)
+      params.require(:person).permit(:first_name, :last_name, :relationship, :birthday, :street_address, :avatar_url, :city, :state, :email_address, :postal_code)
     end
 end
