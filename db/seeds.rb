@@ -8,6 +8,7 @@
 user = User.first
 
 family_member1 = user.people.find_or_create_by(first_name: "Bob", last_name: "Dylan", relationship: "brother", birthday: "January 23, 2004",
-                            address: "1234 N. Hwy 200, Orlando, FL 34471", avatar_url: "https://tse4.mm.bing.net/th?id=OIP.GslTgQPuIwjafVpYBfGstAHaDt&pid=Api&P=0&w=368&h=185" )
+                            street_address: "1234 N. Hwy 200", city: "Orlando", state: "FL", postal_code: "34471", email_address: "seeme@gmail.com",
+                            avatar_url: "https://tse4.mm.bing.net/th?id=OIP.GslTgQPuIwjafVpYBfGstAHaDt&pid=Api&P=0&w=368&h=185" )
 
 bobby_notes = user.notes.find_or_create_by(content: "we met", person_id: family_member1.id)
